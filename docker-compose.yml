@@ -14,7 +14,6 @@
 # Run migrations: docker compose run migrate
 #       Stop all: docker compose down (add -v to wipe db)
 #
-version: '3.7'
 
 volumes:
   db_data:
