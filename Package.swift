@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "template-fluent-postgres",
+    name: "TemplateFluentPostgres",
     platforms: [
        .macOS(.v13)
     ],
@@ -18,7 +18,7 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "App",
+            name: "TemplateFluentPostgres",
             dependencies: [
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
@@ -29,9 +29,9 @@ let package = Package(
             swiftSettings: swiftSettings
         ),
         .testTarget(
-            name: "AppTests",
+            name: "TemplateFluentPostgresTests",
             dependencies: [
-                .target(name: "App"),
+                .target(name: "TemplateFluentPostgres"),
                 .product(name: "VaporTesting", package: "vapor"),
             ],
             swiftSettings: swiftSettings

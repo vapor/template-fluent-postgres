@@ -1,4 +1,4 @@
-# template-fluent-postgres
+# TemplateFluentPostgres
 
 💧 A project built with the Vapor web framework.
 
