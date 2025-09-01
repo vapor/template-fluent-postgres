@@ -38,7 +38,10 @@ struct TemplateFluentPostgresTests {
             
             try await app.testing().test(.GET, "todos", afterResponse: { res async throws in
                 #expect(res.status == .ok)
-                #expect(try res.content.decode([TodoDTO].self) == sampleTodos.map { $0.toDTO()} )
+                #expect(try
+                    res.content.decode([TodoDTO].self).sorted(by: { ($0.title ?? "") < ($1.title ?? "") }) ==
+                    sampleTodos.map { $0.toDTO() }.sorted(by: { ($0.title ?? "") < ($1.title ?? "") })
+                )
             })
         }
     }
