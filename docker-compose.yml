@@ -21,9 +21,9 @@ volumes:
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
   DATABASE_HOST: db
-  DATABASE_NAME: vapor_database
-  DATABASE_USERNAME: vapor_username
-  DATABASE_PASSWORD: vapor_password
+  DATABASE_NAME: &db_name vapor_database
+  DATABASE_USERNAME: &db_username vapor_username
+  DATABASE_PASSWORD: &db_password vapor_password
   
 services:
   app:
@@ -61,13 +61,12 @@ services:
     deploy:
       replicas: 0
   db:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     volumes:
-      - db_data:/var/lib/postgresql/data/pgdata
+      - db_data:/var/lib/postgresql
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: vapor_username
-      POSTGRES_PASSWORD: vapor_password
-      POSTGRES_DB: vapor_database
+      POSTGRES_USER: *db_username
+      POSTGRES_PASSWORD: *db_password
+      POSTGRES_DB: *db_name
     ports:
       - '5432:5432'
